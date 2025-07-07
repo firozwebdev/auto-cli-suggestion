@@ -1,52 +1,4 @@
 {
-  "hello": {
-    "suggestion": "Given the context, the most re",
-    "timestamp": 1751914417584
-  },
-  "docker": {
-    "suggestion": "docker build .",
-    "timestamp": 1751914501656
-  },
-  "dokcer": {
-    "suggestion": "`docker build .`",
-    "timestamp": 1751915208954
-  },
-  "dokcer ck": {
-    "suggestion": "docker compose up",
-    "timestamp": 1751915221752
-  },
-  "git": {
-    "suggestion": "status",
-    "timestamp": 1751915241862
-  },
-  "git  sta": {
-    "suggestion": "git status",
-    "timestamp": 1751915253117
-  },
-  "kddo": {
-    "suggestion": "Since \"kddo\" doesn't seem dire",
-    "timestamp": 1751915281676
-  },
-  "kddobut": {
-    "suggestion": "git diff",
-    "timestamp": 1751915299776
-  },
-  "kddobut i want to go": {
-    "suggestion": "git checkout .",
-    "timestamp": 1751915311376
-  },
-  "kddobut i want to go home. u ?": {
-    "suggestion": "Given the context of a Node.js",
-    "timestamp": 1751915322874
-  },
-  "git do": {
-    "suggestion": "git commit",
-    "timestamp": 1751915531478
-  },
-  "dokc": {
-    "suggestion": "`docker`",
-    "timestamp": 1751915551944
-  },
   "gtiit": {
     "suggestion": "`git init`",
     "timestamp": 1751917358302
@@ -62,5 +14,37 @@
   "astalavista": {
     "suggestion": "Given the user input \"astalavi",
     "timestamp": 1751917635596
+  },
+  "docker": {
+    "suggestion": "docker build",
+    "timestamp": 1751918920146
+  },
+  "git": {
+    "suggestion": "status",
+    "timestamp": 1751918932759
+  },
+  "kuber": {
+    "suggestion": "Given the context and user inp",
+    "timestamp": 1751918946470
+  },
+  "hello": {
+    "suggestion": "```\nnpm run\n```",
+    "timestamp": 1751919008934
+  },
+  "echo \"hello": {
+    "suggestion": "echo \"hello \" | node .",
+    "timestamp": 1751919018437
+  },
+  "node": {
+    "suggestion": "node index.js",
+    "timestamp": 1751919035486
+  },
+  "echo": {
+    "suggestion": "echo \"",
+    "timestamp": 1751919436082
+  },
+  "echo hello world": {
+    "suggestion": "```\necho hello world\n```",
+    "timestamp": 1751919444583
   }
 }
