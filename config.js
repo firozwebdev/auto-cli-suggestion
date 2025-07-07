@@ -1,6 +1,12 @@
+require("dotenv").config();
+
 module.exports = {
-  GEMINI_API_KEY: "AIzaSyBtO2J8lMY7hakS-LeBBhy-Zqhzpb-Iw98", // Replace with your API key
+  // Use only an array of keys for rotation. Add as many as you want.
+  GEMINI_API_KEYS: process.env.GEMINI_API_KEYS
+    ? process.env.GEMINI_API_KEYS.split(",")
+    : [],
   GEMINI_API_URL:
+    process.env.GEMINI_API_URL ||
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
 
   // Cost Optimization Settings
@@ -18,7 +24,7 @@ module.exports = {
 
   // UI Settings
   ENABLE_COLORS: true,
-  DEBUG_MODE: false,
+  DEBUG_MODE: true,
 
   // Cost Tracking
   TRACK_USAGE: true, // Track API usage for cost monitoring

@@ -1,13 +1,13 @@
 const readline = require("readline");
 const chalk = require("chalk");
 const cliCursor = require("cli-cursor");
-const ContextAwareGeminiService = require("./context-aware-service");
+const OptimizedGeminiService = require("./gemini-service-optimized");
 const MLSuggestionEngine = require("./ml-suggestion-engine");
 const config = require("./config");
 
 class MLEnhancedTerminal {
   constructor() {
-    this.geminiService = new ContextAwareGeminiService();
+    this.geminiService = new OptimizedGeminiService();
     this.mlEngine = new MLSuggestionEngine();
     this.currentInput = "";
     this.suggestions = [];
@@ -208,9 +208,6 @@ class MLEnhancedTerminal {
         this.isProcessing = false;
         this.suggestions = [];
         this.redraw();
-        if (config.DEBUG_MODE) {
-          console.error("Suggestion error:", error.message);
-        }
       }
     }, config.SUGGESTION_DELAY);
   }
@@ -269,7 +266,6 @@ class MLEnhancedTerminal {
         this.cursorPosition;
       process.stdout.write(`\r\x1b[${cursorPos}C`);
     } catch (error) {
-      console.error("Error in redraw:", error.message);
       process.stdout.write("\r\x1b[K🤖 ML Terminal > ");
     }
   }
@@ -475,7 +471,6 @@ class MLEnhancedTerminal {
       );
       this.redraw();
     } catch (error) {
-      console.error("Error starting terminal:", error.message);
       cliCursor.show();
       process.exit(1);
     }

@@ -1,7 +1,7 @@
 const readline = require("readline");
 const chalk = require("chalk");
 const cliCursor = require("cli-cursor");
-const GeminiService = require("./gemini-service");
+const GeminiService = require("./gemini-service-optimized");
 const config = require("./config");
 
 class EnhancedTerminal {
@@ -113,7 +113,7 @@ class EnhancedTerminal {
         this.currentInput.slice(this.cursorPosition);
       this.cursorPosition--;
       this.redraw();
-      this.requestSuggestion();
+      this.requestSuggestion(this.currentInput);
     }
   }
 
@@ -124,7 +124,7 @@ class EnhancedTerminal {
       this.currentInput.slice(this.cursorPosition);
     this.cursorPosition++;
     this.redraw();
-    this.requestSuggestion();
+    this.requestSuggestion(this.currentInput);
   }
 
   acceptSuggestion() {
@@ -136,40 +136,27 @@ class EnhancedTerminal {
     }
   }
 
-  async requestSuggestion() {
+  async requestSuggestion(input) {
     if (this.suggestionTimeout) {
       clearTimeout(this.suggestionTimeout);
     }
 
     this.suggestionTimeout = setTimeout(async () => {
-      if (this.currentInput.trim().length < 2) {
-        this.suggestion = "";
-        this.redraw();
-        return;
-      }
+      if (input.trim().length < 2) return;
 
       this.isProcessing = true;
-      this.redraw();
+      this.showProcessingIndicator();
 
       try {
-        const suggestion = await this.geminiService.getCommandSuggestion(
-          this.currentInput
-        );
+        const suggestion = await this.geminiService.getCommandSuggestion(input);
         this.isProcessing = false;
 
-        if (suggestion && suggestion !== this.currentInput) {
+        if (suggestion) {
           this.suggestion = suggestion;
-        } else {
-          this.suggestion = "";
+          this.displaySuggestion(input, suggestion);
         }
-        this.redraw();
       } catch (error) {
         this.isProcessing = false;
-        this.suggestion = "";
-        this.redraw();
-        if (config.DEBUG_MODE) {
-          console.error("Suggestion error:", error.message);
-        }
       }
     }, config.SUGGESTION_DELAY);
   }
@@ -288,6 +275,18 @@ class EnhancedTerminal {
         'Type "help" for commands, or start typing to see AI suggestions.\n'
       )
     );
+    this.redraw();
+  }
+
+  showProcessingIndicator() {
+    if (config.ENABLE_COLORS) {
+      process.stdout.write(chalk.gray(" 🤔 Thinking..."));
+    } else {
+      process.stdout.write(" 🤔 Thinking...");
+    }
+  }
+
+  displaySuggestion(input, suggestion) {
     this.redraw();
   }
 }

@@ -1,12 +1,12 @@
 const readline = require("readline");
 const chalk = require("chalk");
 const cliCursor = require("cli-cursor");
-const ContextAwareGeminiService = require("./context-aware-service");
+const OptimizedGeminiService = require("./gemini-service-optimized");
 const config = require("./config");
 
 class ContextAwareTerminal {
   constructor() {
-    this.geminiService = new ContextAwareGeminiService();
+    this.geminiService = new OptimizedGeminiService();
     this.currentInput = "";
     this.suggestion = "";
     this.suggestionTimeout = null;
@@ -167,9 +167,6 @@ class ContextAwareTerminal {
         this.isProcessing = false;
         this.suggestion = "";
         this.redraw();
-        if (config.DEBUG_MODE) {
-          console.error("Suggestion error:", error.message);
-        }
       }
     }, config.SUGGESTION_DELAY);
   }
@@ -214,7 +211,6 @@ class ContextAwareTerminal {
         this.cursorPosition;
       process.stdout.write(`\r\x1b[${cursorPos}C`);
     } catch (error) {
-      console.error("Error in redraw:", error.message);
       process.stdout.write("\r\x1b[K🤖 AI Terminal > ");
     }
   }
@@ -348,7 +344,6 @@ class ContextAwareTerminal {
       );
       this.redraw();
     } catch (error) {
-      console.error("Error starting terminal:", error.message);
       cliCursor.show();
       process.exit(1);
     }

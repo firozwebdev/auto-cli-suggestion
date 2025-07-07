@@ -1,0 +1,19 @@
+{
+  "GEMINI_API_KEYS": [
+    "AIzaSyAGx_9wxnH_i0C6R6zqk1Vm2ddR-yiiO2Y"
+  ],
+  "GEMINI_API_URL": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+  "SUGGESTION_DELAY": 2000,
+  "MIN_INPUT_LENGTH": 3,
+  "MAX_SUGGESTION_LENGTH": 30,
+  "ENABLE_SUGGESTIONS": true,
+  "MAX_DAILY_REQUESTS": 100,
+  "REQUEST_COOLDOWN": 5000,
+  "ENABLE_CACHE": true,
+  "CACHE_DURATION": 3600000,
+  "MAX_CACHE_SIZE": 1000,
+  "ENABLE_COLORS": true,
+  "DEBUG_MODE": true,
+  "TRACK_USAGE": true,
+  "USAGE_FILE": "usage.json"
+}

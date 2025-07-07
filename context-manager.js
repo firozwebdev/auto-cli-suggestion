@@ -3,6 +3,7 @@ const path = require("path");
 const { exec } = require("child_process");
 const { promisify } = require("util");
 const chalk = require("chalk");
+const config = require("./config");
 
 const execAsync = promisify(exec);
 

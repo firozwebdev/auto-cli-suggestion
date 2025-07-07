@@ -1,54 +1,66 @@
 {
-  "i wan": {
-    "suggestion": "i wan**t to know.**",
-    "timestamp": 1751828357990
+  "hello": {
+    "suggestion": "Given the context, the most re",
+    "timestamp": 1751914417584
   },
-  "i wan**t to know.** the": {
-    "suggestion": "i wan**t to know** the **truth",
-    "timestamp": 1751828368804
+  "docker": {
+    "suggestion": "docker build .",
+    "timestamp": 1751914501656
   },
-  "i wan**t to know.** the reason why they don't": {
-    "suggestion": "i wan**t to know.** the reason",
-    "timestamp": 1751828380054
+  "dokcer": {
+    "suggestion": "`docker build .`",
+    "timestamp": 1751915208954
   },
-  "i wan**t to know.** the reason why they don't  com": {
-    "suggestion": "i wan**t to know.** the reason",
-    "timestamp": 1751828387570
-  },
-  "i wan**t to know.** the reason why they don't  come": {
-    "suggestion": "i wan**t to know** the reason ",
-    "timestamp": 1751828470986
-  },
-  "i wan**t to know.** the reason why they don't  come this": {
-    "suggestion": "i wan**t to know** the reason ",
-    "timestamp": 1751828483723
+  "dokcer ck": {
+    "suggestion": "docker compose up",
+    "timestamp": 1751915221752
   },
   "git": {
-    "suggestion": "version control system",
-    "timestamp": 1751828701288
+    "suggestion": "status",
+    "timestamp": 1751915241862
   },
-  "git he": {
-    "suggestion": "git help",
-    "timestamp": 1751828709416
+  "git  sta": {
+    "suggestion": "git status",
+    "timestamp": 1751915253117
   },
-  "git che": {
-    "suggestion": "git checkout",
-    "timestamp": 1751828734930
+  "kddo": {
+    "suggestion": "Since \"kddo\" doesn't seem dire",
+    "timestamp": 1751915281676
   },
-  "git chekou": {
-    "suggestion": "git checkout",
-    "timestamp": 1751828741518
+  "kddobut": {
+    "suggestion": "git diff",
+    "timestamp": 1751915299776
   },
-  "git chekout -": {
-    "suggestion": "git checkout -",
-    "timestamp": 1751828749499
+  "kddobut i want to go": {
+    "suggestion": "git checkout .",
+    "timestamp": 1751915311376
   },
-  "git chekout -b ca": {
-    "suggestion": "git checkout -b ca <branch_nam",
-    "timestamp": 1751828764804
+  "kddobut i want to go home. u ?": {
+    "suggestion": "Given the context of a Node.js",
+    "timestamp": 1751915322874
   },
-  "git chekout -b cacan u": {
-    "suggestion": "git checkout -b cacan origin/u",
-    "timestamp": 1751828771025
+  "git do": {
+    "suggestion": "git commit",
+    "timestamp": 1751915531478
+  },
+  "dokc": {
+    "suggestion": "`docker`",
+    "timestamp": 1751915551944
+  },
+  "gtiit": {
+    "suggestion": "`git init`",
+    "timestamp": 1751917358302
+  },
+  "git ini": {
+    "suggestion": "`git init`",
+    "timestamp": 1751917368986
+  },
+  "will": {
+    "suggestion": "will test",
+    "timestamp": 1751917380190
+  },
+  "astalavista": {
+    "suggestion": "Given the user input \"astalavi",
+    "timestamp": 1751917635596
   }
 }

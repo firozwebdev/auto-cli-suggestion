@@ -1,14 +1,55 @@
+const fs = require("fs");
 const axios = require("axios");
 const config = require("./config");
+
+if (require.main === module) {
+  // Only runs if you execute: node gemini-service-optimized.js
+  fs.writeFileSync("debug_config_output.txt", JSON.stringify(config, null, 2));
+  setTimeout(() => {}, 10000); // Keeps the process alive for 10 seconds
+}
+
 const CacheManager = require("./cache-manager");
 const ContextManager = require("./context-manager");
 
 class OptimizedGeminiService {
   constructor() {
-    this.apiKey = config.GEMINI_API_KEY;
+    this.apiKeys =
+      Array.isArray(config.GEMINI_API_KEYS) && config.GEMINI_API_KEYS.length > 0
+        ? config.GEMINI_API_KEYS
+        : [config.GEMINI_API_KEY];
     this.apiUrl = config.GEMINI_API_URL;
     this.cacheManager = new CacheManager();
     this.contextManager = new ContextManager();
+    this.currentKeyIndex = 0;
+  }
+
+  getCurrentApiKey() {
+    return this.apiKeys[this.currentKeyIndex];
+  }
+
+  rotateApiKey() {
+    this.currentKeyIndex = (this.currentKeyIndex + 1) % this.apiKeys.length;
+  }
+
+  async postWithKeyRotation(payload, headers, attempt = 0) {
+    if (attempt >= this.apiKeys.length) {
+      throw new Error("All API keys exhausted or failed.");
+    }
+    const apiKey = this.getCurrentApiKey();
+    try {
+      const response = await axios.post(this.apiUrl, payload, {
+        headers: {
+          ...headers,
+          "X-goog-api-key": apiKey,
+        },
+        timeout: 15000,
+      });
+      return response;
+    } catch (error) {
+      // Rotate to next key and retry on ANY error
+      this.rotateApiKey();
+      return this.postWithKeyRotation(payload, headers, attempt + 1);
+    }
   }
 
   async getCommandSuggestion(userInput) {
@@ -34,30 +75,32 @@ class OptimizedGeminiService {
     }
 
     try {
-      // Optimized prompt - shorter and more focused
-      const prompt = `Complete: "${userInput}" (${config.MAX_SUGGESTION_LENGTH} chars max)`;
+      // Get contextual suggestion
+      const contextualResult =
+        await this.contextManager.getContextualSuggestion(userInput);
 
-      const response = await axios.post(
-        this.apiUrl,
-        {
-          contents: [
-            {
-              parts: [
-                {
-                  text: prompt,
-                },
-              ],
-            },
-          ],
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "X-goog-api-key": this.apiKey,
+      let prompt;
+      if (typeof contextualResult === "string") {
+        // Direct match found, use it
+        return contextualResult;
+      } else {
+        // Use context-aware prompt
+        prompt = contextualResult.prompt;
+      }
+
+      const payload = {
+        contents: [
+          {
+            parts: [
+              {
+                text: prompt,
+              },
+            ],
           },
-          timeout: 5000,
-        }
-      );
+        ],
+      };
+      const headers = { "Content-Type": "application/json" };
+      const response = await this.postWithKeyRotation(payload, headers);
 
       if (
         response.data &&
@@ -100,6 +143,10 @@ class OptimizedGeminiService {
 
   resetUsageStats() {
     this.cacheManager.resetUsageStats();
+  }
+
+  getContextDisplay() {
+    return "";
   }
 }
 

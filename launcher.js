@@ -65,13 +65,17 @@ class Launcher {
   }
 
   async launch() {
-    // Check API key first
+    // Check API key(s) first
     if (
-      !config.GEMINI_API_KEY ||
-      config.GEMINI_API_KEY === "YOUR_API_KEY_HERE"
+      !Array.isArray(config.GEMINI_API_KEYS) ||
+      config.GEMINI_API_KEYS.length === 0 ||
+      !config.GEMINI_API_KEYS[0] ||
+      config.GEMINI_API_KEYS[0] === "YOUR_API_KEY_HERE"
     ) {
       console.error(
-        chalk.red("❌ Error: Please configure your Gemini API key in config.js")
+        chalk.red(
+          "❌ Error: Please configure at least one Gemini API key in config.js (GEMINI_API_KEYS array)"
+        )
       );
       console.log(chalk.white("📝 Steps:"));
       console.log(
@@ -79,7 +83,9 @@ class Launcher {
           "1. Get your API key from https://makersuite.google.com/app/apikey"
         )
       );
-      console.log(chalk.gray("2. Update the GEMINI_API_KEY in config.js"));
+      console.log(
+        chalk.gray("2. Add it to the GEMINI_API_KEYS array in config.js")
+      );
       console.log(chalk.gray("3. Run: node launcher.js"));
       process.exit(1);
     }
