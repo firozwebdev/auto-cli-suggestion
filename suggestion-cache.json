@@ -1,0 +1,54 @@
+{
+  "i wan": {
+    "suggestion": "i wan**t to know.**",
+    "timestamp": 1751828357990
+  },
+  "i wan**t to know.** the": {
+    "suggestion": "i wan**t to know** the **truth",
+    "timestamp": 1751828368804
+  },
+  "i wan**t to know.** the reason why they don't": {
+    "suggestion": "i wan**t to know.** the reason",
+    "timestamp": 1751828380054
+  },
+  "i wan**t to know.** the reason why they don't  com": {
+    "suggestion": "i wan**t to know.** the reason",
+    "timestamp": 1751828387570
+  },
+  "i wan**t to know.** the reason why they don't  come": {
+    "suggestion": "i wan**t to know** the reason ",
+    "timestamp": 1751828470986
+  },
+  "i wan**t to know.** the reason why they don't  come this": {
+    "suggestion": "i wan**t to know** the reason ",
+    "timestamp": 1751828483723
+  },
+  "git": {
+    "suggestion": "version control system",
+    "timestamp": 1751828701288
+  },
+  "git he": {
+    "suggestion": "git help",
+    "timestamp": 1751828709416
+  },
+  "git che": {
+    "suggestion": "git checkout",
+    "timestamp": 1751828734930
+  },
+  "git chekou": {
+    "suggestion": "git checkout",
+    "timestamp": 1751828741518
+  },
+  "git chekout -": {
+    "suggestion": "git checkout -",
+    "timestamp": 1751828749499
+  },
+  "git chekout -b ca": {
+    "suggestion": "git checkout -b ca <branch_nam",
+    "timestamp": 1751828764804
+  },
+  "git chekout -b cacan u": {
+    "suggestion": "git checkout -b cacan origin/u",
+    "timestamp": 1751828771025
+  }
+}
